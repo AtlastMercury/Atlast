@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/ >
+		<title>Atlast</title>
+
+		<!-- Google fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
+		<!-- D3.js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+		
+		<style>
+			body {
+				font-family: 'Open Sans', sans-serif;
+				font-size: 11px;
+				font-weight: 300;
+				fill: #242424;
+				text-align: center;
+				text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+				cursor: default;
+			}
+			
+			.legend {
+				font-family: 'Raleway', sans-serif;
+				fill: #333333;
+			}
+			
+			.tooltip {
+				fill: #333333;
+			}
+		</style>
+	
+	</head>
+	<body>
+
+		<div class="radarChart"></div>
+
+		<script src="radarChart.js"></script>	
+		<script>
+			////////////////////////////////////////////////////////////// 
+			//////////////////////// Set-Up ////////////////////////////// 
+			////////////////////////////////////////////////////////////// 
+
+			var margin = {top: 100, right: 100, bottom: 100, left: 100},
+				width = Math.min(700, window.innerWidth - 10) - margin.left - margin.right,
+				height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
+					
+			////////////////////////////////////////////////////////////// 
+			////////////////////////// Data ////////////////////////////// 
+			////////////////////////////////////////////////////////////// 
+			// Changer le nom de chaque valeurs pour correspondre à ce dont on a besoin
+
+			var data = [
+					  [//Forme 1
+						{axis:"Spot 1",value:0.22},
+						{axis:"Spot 2",value:0.28},
+						{axis:"Spot 3",value:0.29},
+						{axis:"Spot 4",value:0.17},
+						{axis:"Spot 5",value:0.22},
+						{axis:"Spot 6",value:0.02},
+						{axis:"Spot 7",value:0.21},
+						{axis:"Spot 8",value:0.50}			
+					  ],[//Forme 2
+						{axis:"Spot 1",value:0.27},
+						{axis:"Spot 2",value:0.16},
+						{axis:"Spot 3",value:0.35},
+						{axis:"Spot 4",value:0.13},
+						{axis:"Spot 5",value:0.20},
+						{axis:"Spot 6",value:0.13},
+						{axis:"Spot 7",value:0.35},
+						{axis:"Spot 8",value:0.38}
+					  ],[//Forme 3
+						{axis:"Spot 1",value:0.26},
+						{axis:"Spot 2",value:0.10},
+						{axis:"Spot 3",value:0.30},
+						{axis:"Spot 4",value:0.14},
+						{axis:"Spot 5",value:0.23},
+						{axis:"Spot 6",value:0.04},
+						{axis:"Spot 7",value:0.41},
+						{axis:"Spot 8",value:0.30}
+					  ],[//Forme 4
+						{axis:"Spot 1",value:0.20},
+						{axis:"Spot 2",value:0.08},
+						{axis:"Spot 3",value:0.22},
+						{axis:"Spot 4",value:0.10},
+						{axis:"Spot 5",value:0.14},
+						{axis:"Spot 6",value:0.10},
+						{axis:"Spot 7",value:0.23},
+						{axis:"Spot 8",value:0.21}
+					  ]
+					];
+			////////////////////////////////////////////////////////////// 
+			//////////////////// Draw the Chart ////////////////////////// 
+			////////////////////////////////////////////////////////////// 
+
+			var color = d3.scale.ordinal() // mettre la charte de couleur dans .range)
+				.range(["#EDC951","#CC333F","#00A0B0", "lightpink"]);
+				
+			var radarChartOptions = {
+			  w: width,
+			  h: height,
+			  margin: margin,
+			  maxValue: 0.5,
+			  levels: 5,
+			  roundStrokes: true,
+			  color: color
+			};
+			//Call function to draw the Radar chart
+			RadarChart(".radarChart", data, radarChartOptions);
+		</script>
+	</body>
+</html>
